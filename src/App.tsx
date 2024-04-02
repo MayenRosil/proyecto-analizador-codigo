@@ -16,7 +16,7 @@ const App: React.FC = () => {
 
   return (
     <div className='main-container container'>
-      <h1>Analizador de Codigo</h1>
+      <h1>Analizador de Código</h1>
       <FileInput setCodeText={setCodeText} />
       <CodeInput recibirCodigo={codeText} />
     </div>
