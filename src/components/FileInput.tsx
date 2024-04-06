@@ -34,6 +34,7 @@ const FileInput: React.FC<FileInputProps> = ({setCodeText}) => {
               content: '',
             });
             setCodeText("  ");
+            alert('Selecciona un archivo extensión .atom');
           }
         }
       };

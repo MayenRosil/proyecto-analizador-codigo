@@ -52,9 +52,8 @@ const CodeInput: React.FC<CodeInputProps> = ({ recibirCodigo }) => {
                         <h2>Editor</h2>
 
                         <div>
-                            <button type="button" className="btn btn-info" id="btn">Boton 1</button>
-                            <button type="button" className="btn btn-info" id="btn">Boton 2</button>
-                            <button type="button" className="btn btn-info" id="btn">Boton 3</button>
+                            <button type="button" className="btn btn-info button-action" id="btn">Analizador Léxico</button>
+                            <button type="button" className="btn btn-warning button-action" id="btn">Analizador Sintáctico</button>
                         </div>
                     </div>
                     <div className="container">
