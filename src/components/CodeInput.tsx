@@ -1,11 +1,13 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, ChangeEvent } from 'react';
 import '../css/CodeInput.css';
 
 type CodeInputProps = {
     recibirCodigo: string;
+    validadorLexico: (codigoPlano: string) => void;
+    setCodeText: (data: string) => void
 }
 
-const CodeInput: React.FC<CodeInputProps> = ({ recibirCodigo }) => {
+const CodeInput: React.FC<CodeInputProps> = ({ recibirCodigo, validadorLexico, setCodeText }) => {
 
     const codigoRef = useRef<HTMLTextAreaElement>(null);
 
@@ -42,6 +44,9 @@ const CodeInput: React.FC<CodeInputProps> = ({ recibirCodigo }) => {
 
     }, [recibirCodigo]);
 
+    const handleChange = (event: ChangeEvent<HTMLTextAreaElement>) => {
+        setCodeText(event.target.value)
+    };
 
     return (
         <div className="container h-50 code-input-container">
@@ -52,7 +57,7 @@ const CodeInput: React.FC<CodeInputProps> = ({ recibirCodigo }) => {
                         <h2>Editor</h2>
 
                         <div>
-                            <button type="button" className="btn btn-info button-action" id="btn">Analizador Léxico</button>
+                            <button type="button" className="btn btn-info button-action" id="btn" onClick={() => validadorLexico(recibirCodigo)} >Analizador Léxico</button>
                             <button type="button" className="btn btn-warning button-action" id="btn">Analizador Sintáctico</button>
                         </div>
                     </div>
@@ -62,7 +67,7 @@ const CodeInput: React.FC<CodeInputProps> = ({ recibirCodigo }) => {
                                 <div className="line-numbers">
                                     <span></span>
                                 </div>
-                                <textarea ref={codigoRef} id="codigo"></textarea>
+                                <textarea ref={codigoRef} id="codigo" onChange={(e) => handleChange(e)}></textarea>
                             </div>
                         </div>
                     </div>
