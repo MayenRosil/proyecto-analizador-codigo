@@ -16,7 +16,8 @@ const ErrorTable: React.FC<ErrorTableProps> = ({ listadoPalabras }) => {
                         <th scope="col">#</th>
                         <th scope="col">Palabra</th>
                         <th scope="col">No. Linea</th>
-                        <th scope="col">Es Valido</th>
+                        <th scope="col">Tipo error</th>
+                        <th scope="col">Error</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -26,7 +27,8 @@ const ErrorTable: React.FC<ErrorTableProps> = ({ listadoPalabras }) => {
                                 <th scope="row">{i}</th>
                                 <td>{p.palabra}</td>
                                 <td>{p.numeroLinea}</td>
-                                <td>{p.esValido ? 'true' : 'false'}</td>
+                                <td>{p.tipo}</td>
+                                <td>{p.error}</td>
                             </tr>
                         )
                     })}

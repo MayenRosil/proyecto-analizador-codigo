@@ -21,7 +21,7 @@ const PrettyCode: React.FC<PrettyCodeProps> = ({ listadoAgrupado }) => {
                             <span key={subIndex}
                                 style={{
                                     borderBottom: palabra.esValido ? 'none' : '2px dashed red',
-                                    color: palabra.esValido ? '#2ba3ff' : 'white',
+                                    color: palabra.color,
                                     marginRight: '5px'
                                 }}>
                                 {palabra.palabra}

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Palabra } from '../interfaces/palabra';
-import '../css/TokenTable.css'
+import '../css/TokenTable.css';
+import { expresionesRegulares } from '../libs/expresiones';
 
 interface TokenTableProps {
     listadoPalabras: Palabra[]
@@ -16,7 +17,7 @@ const TokenTable: React.FC <TokenTableProps> = ({listadoPalabras}) => {
                         <th scope="col">#</th>
                         <th scope="col">Palabra</th>
                         <th scope="col">No. Linea</th>
-                        <th scope="col">Es Valido</th>
+                        <th scope="col">Tipo</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -26,7 +27,7 @@ const TokenTable: React.FC <TokenTableProps> = ({listadoPalabras}) => {
                                 <th scope="row">{i}</th>
                                 <td>{p.palabra}</td>
                                 <td>{p.numeroLinea}</td>
-                                <td>{p.esValido ? 'true' : 'false'}</td>
+                                <td>{p.tipo}</td>
                             </tr>
                         )
                     })}

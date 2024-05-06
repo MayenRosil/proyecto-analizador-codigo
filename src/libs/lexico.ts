@@ -1,10 +1,7 @@
 import { expresionesRegulares } from "./expresiones";
 
-interface Palabra {
-    numeroLinea: number;
-    palabra: string;
-    esValido: boolean;
-}
+import {Palabra} from '../interfaces/palabra'
+import { ISintaxis } from "../interfaces/sintaxis";
 
 export const validadorLexico = (codigoPlano: string) : Palabra[] => {
     const palabras = dividirTextoEnPalabras(codigoPlano);
@@ -28,18 +25,33 @@ const dividirTextoEnPalabras = (texto: string): Palabra[] => {
         //Por cada palabra encontrada en una linea, valida si pertenece al alguna RegEx, si no, no es valida
         palabrasEnLinea.forEach(palabra => {
             let esValido = false;
+            let tipoPalabra = '';
+            let colorPalabra = '';
+            let tipoError = "";
             for (const regex of expresionesRegulares) {
-              if (regex.test(palabra)) {
+              if (regex.regex.test(palabra)) {
                 esValido = true;
+                tipoPalabra = regex.tipo;
+                colorPalabra = regex.color;
                 break;
               }
+            }
+
+            if(!esValido) tipoError = validarTipoErrorLexico(palabra);
+            if(tipoError === "NO"){
+                esValido = true;
+                tipoPalabra = "Identificador";
+                colorPalabra = "#fff";
             }
 
             //Crea el objeto y lo agrega al array final
             palabrasValidadas.push({
                 numeroLinea,
                 palabra,
-                esValido
+                esValido,
+                tipo: esValido ? tipoPalabra : 'Léxico',
+                color: esValido ? colorPalabra : '#fff',
+                error: tipoError
             });
         });
     }
@@ -47,3 +59,76 @@ const dividirTextoEnPalabras = (texto: string): Palabra[] => {
     return palabrasValidadas;
 };
 
+const validarTipoErrorLexico = (palabraEscrita: string) => {
+
+    let validacion = "NO"
+    const simbolosAceptados = /^[A-Za-z0-9",!@$#%^&*()/\\\-+=\[\]{}|:;'<>,.]*$/;
+    const regexNumeros = /^[0-9]+$/;
+    const regexIdentificador = /^[a-zA-Z][_a-zA-Z0-9]*$/;
+    
+    //Validar un simbolo que no pertenece al lenguaje
+    //Recorre la palabra, comprueba cada caracter con los simbolos aceptados
+    //Si al menos 1 caracter no corresponde, salta este error
+    if(palabraEscrita.split('').some(char => !simbolosAceptados.test(char))){
+        return "Caracter no valido";
+    }
+
+    //Validar numero mal formado
+    //Valida si la expresion empieza con numero
+    //Valida si al menos la mitad de los caracteres son numeros
+    //Si contiene al menos 1 caracter que no sea numero, salta este error
+    if(regexNumeros.test(palabraEscrita[0])){
+        let contadorNumeros = 0;
+        for (let i = 0; i < palabraEscrita.length; i++) {
+            if (!isNaN(parseInt(palabraEscrita[i]))) {
+                contadorNumeros++;
+            }
+        }
+        const mitadLongitud = palabraEscrita.length / 2;
+
+        if(contadorNumeros >= mitadLongitud){
+            if(palabraEscrita.split('').some(char => !regexNumeros.test(char))){
+                return "Numero mal formado";
+            }
+        }
+    }
+
+    //Validar identificado mal escrito
+    //Valida si cumple la regla de los identificadores
+    //Si no, salta este error
+    if(!regexIdentificador.test(palabraEscrita)){
+        return "Identificador invalido";
+    }
+
+    //Validar palabra reservada mal escrita
+    //Valida si al menos el 75% de caracteres coinciden con los de alguna palabra reservada
+    //Si es asi, sin importar el orden, salta este error
+    expresionesRegulares.map((exp, index) => {
+        // Eliminar caracteres duplicados de cada palabra
+        const palabra1Unica = eliminarDuplicados(palabraEscrita);
+        const palabra2Unica = eliminarDuplicados(exp.palabra);
+
+        // Contador para almacenar el número de caracteres en común
+        let contadorCoincidencias = 0;
+
+        // Iterar sobre los caracteres únicos de la primera palabra
+        for (const caracter of palabra1Unica) {
+            // Verificar si el caracter está presente en la segunda palabra
+            if (palabra2Unica.includes(caracter)) {
+                contadorCoincidencias++; // Incrementar el contador si coincide
+            }
+        }
+        // Calcular el porcentaje de coincidencia
+        const porcentajeCoincidencia = (contadorCoincidencias / Math.max(palabra1Unica.length, palabra2Unica.length)) * 100;
+        // Verificar si al menos el 75% de los caracteres coinciden
+        if(porcentajeCoincidencia >= 75) validacion = "Palabra reservada mal escrita";
+   
+    }
+    );
+    return validacion;
+
+}
+
+const eliminarDuplicados = (cadena: string): string => {
+    return cadena.split('').filter((caracter, indice, arr) => arr.indexOf(caracter) === indice).join('');
+};
