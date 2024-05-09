@@ -26,7 +26,10 @@ const App: React.FC = () => {
   const [analizarLexico, setAnalizarLexico] = useState<boolean>(false);
 
   const analisisLexico = (codigoPlano: string) => {
-    setListadoPalabras(validadorLexico(codigoPlano));
+    const listadoPrevio: Array<Palabra> = validadorLexico(codigoPlano);
+    //agruparTablas(listadoPrevio);
+    const listadoNuevo = agruparTablas(listadoPrevio)
+    setListadoPalabras(listadoNuevo);
 
     agrupar(validadorLexico(codigoPlano));
   }
@@ -41,6 +44,31 @@ const App: React.FC = () => {
 
     setListadoAgrupado(nuevoArray)
     setAnalizarLexico(true)
+    return nuevoArray;
+  }
+
+  const agruparTablas = (listadoPalabras: Palabra[]): Palabra[] => {
+   
+    const nuevoArray: Palabra[] = [];
+    const agrupado: {[key: string]: {numeroLinea: number[]}} = {};
+    
+    listadoPalabras.forEach(obj => {
+        if (agrupado[obj.palabra]) {
+            agrupado[obj.palabra].numeroLinea.push(obj.numeroLinea);
+        } else {
+            agrupado[obj.palabra] = { numeroLinea: [obj.numeroLinea] };
+        }
+    });
+    
+    for (const palabra in agrupado) {
+        if (Object.prototype.hasOwnProperty.call(agrupado, palabra)) {
+            const objOriginal = listadoPalabras.find(obj => obj.palabra === palabra);
+            if (objOriginal) {
+                const newObjeto: Palabra = { ...objOriginal, lineas: agrupado[palabra].numeroLinea };
+                nuevoArray.push(newObjeto);
+            }
+        }
+    }
     return nuevoArray;
   }
 

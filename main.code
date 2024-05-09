@@ -1,0 +1,41 @@
+ImportarRitmo java.util.Scanner
+
+CancionPublica ClaseMusical Main {
+    CancionPublica static NotaVacia main ( String [ ] args ) {
+        Scanner scanner = nuevoTema Scanner ( System.in ) ;
+        ImprimirLetra ( " Ingrese un número entero : " ) ;
+        NotaNum numero = scanner.nextInt ( ) ;
+
+        NotaSi ( numero > 0 ) {
+            ImprimirLetra ( " El número ingresado es positivo . " ) ;
+        } notaAlternativa NotaSi ( numero < 0 ) {
+            ImprimirLetra ( " El número ingresado es negativo . " ) ;
+        } notaAlternativa {
+            ImprimirLetra ( " El número ingresado es cero . " ) ;
+        }
+
+        ImprimirLetra ( " Ingrese otro número entero positivo para calcular la suma y el factorial : " ) ;
+        NotaNum n = scanner.nextInt ( ) ;
+
+        NotaNum suma = 0 , factorial = 1 ;
+        NotaBooleana esPrimo = Verdadero ;
+        NotaPor ( NotaNum i = 1 ; i <= n ; i ++ ) {
+            suma += i ;
+            factorial *= i ;
+            NotaSi ( n % i == 0 && i != 1 && i != n ) {
+                esPrimo = falso ;
+            }
+        }
+
+        ImprimirLetra ( " La suma de los primeros " + n + " números naturales es : " + suma ) ;
+        ImprimirLetra ( " El factorial de " + n + " es : " + factorial ) ;
+        NotaSi ( esPrimo ) {
+            ImprimirLetra ( n + " es un número primo . " ) ;
+        } NotaAlternativa {
+            ImprimirLetra ( n + " no es un número primo . " ) ;
+        }
+
+        scanner.close ( ) ;
+    }
+}
+

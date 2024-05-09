@@ -1,0 +1,53 @@
+
+//Se inicializa la clase
+PLANTILLA PARTIDO Calculadora {
+    //Se inicia el metodo principal
+    PLANTILLA BLOQUEO FORMACION CHILENA(LATERAL[] args) {
+        //Se definen las variables a usar
+        VOLANTE num1 = 0.0, num2 = 0.0;
+        
+        //Solicita datos al usuario
+        DISPARO("Ingrese el primer número: ");
+        VAR(num1);
+
+        DISPARO("Ingrese el segundo número: ");
+        VAR(num2);
+
+        //Muestra el menu
+        DISPARO("Seleccione la operación a realizar:");
+        DISPARO("1. Suma");
+        DISPARO("2. Resta");
+        DISPARO("3. Multiplicación");
+        DISPARO("4. División");
+        
+        //Solicita al usuario el menu
+        DEFENSA opcion = 0;
+        VAR(opcion);
+
+        VOLANTE resultado = 0.0;
+
+        //Valida la opcion ingrsada
+        PASE_FILTRADO (opcion) {
+            OPCION 1:
+                resultado = num1 + num2;
+                FALTA;
+            OPCION 2:
+                resultado = num1 - num2;
+                FALTA;
+            OPCION 3:
+                resultado = num1 * num2;
+                FALTA;
+            OPCION 4:
+                PASE (num2 != 0)
+                    resultado = num1 / num2;
+                RECHAZO
+                    resultado = 0;
+                    DISPARO("Error: División por cero.");
+                FALTA;
+            NO_CONVOCADO:
+                resultado = 0;
+                DISPARO("Opción no válida.");
+        }
+        DISPARO("El resultado es: " + resultado);
+    }
+}

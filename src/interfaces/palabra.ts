@@ -4,5 +4,6 @@ export interface Palabra {
     esValido: boolean;
     tipo: string;
     color: string;
-    error?: string
+    error?: string;
+    lineas?: number[];
 }

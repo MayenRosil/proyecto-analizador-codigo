@@ -22,7 +22,7 @@ const FileInput: React.FC<FileInputProps> = ({setCodeText}) => {
       const reader = new FileReader();
       reader.onload = () => {
         if (reader.result) {
-          if(file.name.split('.')[1] == 'atom'){
+          if(file.name.split('.')[1] == 'code'){
             setFileState({
               name: file.name,
               content: reader.result as string,
@@ -34,7 +34,7 @@ const FileInput: React.FC<FileInputProps> = ({setCodeText}) => {
               content: '',
             });
             setCodeText("  ");
-            alert('Selecciona un archivo extensión .atom');
+            alert('Selecciona un archivo extensión .code');
           }
         }
       };

@@ -26,7 +26,11 @@ const ErrorTable: React.FC<ErrorTableProps> = ({ listadoPalabras }) => {
                             <tr key={i}>
                                 <th scope="row">{i}</th>
                                 <td>{p.palabra}</td>
-                                <td>{p.numeroLinea}</td>
+                                <td>{p.lineas?.map((li, j) => {
+                                    return (
+                                        <span key={j}>{li}, </span>
+                                    )
+                                })}</td>
                                 <td>{p.tipo}</td>
                                 <td>{p.error}</td>
                             </tr>

@@ -39,9 +39,15 @@ const dividirTextoEnPalabras = (texto: string): Palabra[] => {
 
             if(!esValido) tipoError = validarTipoErrorLexico(palabra);
             if(tipoError === "NO"){
-                esValido = true;
-                tipoPalabra = "Identificador";
-                colorPalabra = "#fff";
+                if(/^[0-9]+$/.test(palabra)){
+                    esValido = true;
+                    tipoPalabra = "Numero";
+                    colorPalabra = "#fff";
+                }else{
+                    esValido = true;
+                    tipoPalabra = "Identificador";
+                    colorPalabra = "#fff";
+                }
             }
 
             //Crea el objeto y lo agrega al array final
@@ -65,6 +71,11 @@ const validarTipoErrorLexico = (palabraEscrita: string) => {
     const simbolosAceptados = /^[A-Za-z0-9",!@$#%^&*()/\\\-+=\[\]{}|:;'<>,.]*$/;
     const regexNumeros = /^[0-9]+$/;
     const regexIdentificador = /^[a-zA-Z][_a-zA-Z0-9]*$/;
+
+    //Validar si solo son numeros
+    if(regexNumeros.test(palabraEscrita)){
+        return "NO";
+    }
     
     //Validar un simbolo que no pertenece al lenguaje
     //Recorre la palabra, comprueba cada caracter con los simbolos aceptados
