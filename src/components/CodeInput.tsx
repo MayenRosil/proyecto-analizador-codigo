@@ -12,10 +12,11 @@ const CodeInput: React.FC<CodeInputProps> = ({ recibirCodigo, validadorLexico, s
     const codigoRef = useRef<HTMLTextAreaElement>(null);
 
     useEffect(() => {
-
+        //Obtiene el editor de codigo y el apartado de numeros de linea
         const codigo = document.getElementById("codigo") as HTMLTextAreaElement;
         const lineNumbers = document.querySelector('.line-numbers') as HTMLDivElement;
 
+        //Dibuja el numero de linea siguiente cada que se presiona la letra Enter y se agrega una linea nueva
         codigo.addEventListener("keyup", (event: KeyboardEvent) => {
             const numberOfLines = codigo.value.split("\n").length;
             lineNumbers.innerHTML = Array(numberOfLines)
@@ -23,6 +24,7 @@ const CodeInput: React.FC<CodeInputProps> = ({ recibirCodigo, validadorLexico, s
                 .join('')
         });
 
+        //Controla el presionar la tecla TAB para tabulacion
         codigo.addEventListener("keydown", function (event) {
             if (event.key === "Tab") {
                 event.preventDefault();  // Evita que el foco cambie al siguiente elemento
@@ -33,7 +35,6 @@ const CodeInput: React.FC<CodeInputProps> = ({ recibirCodigo, validadorLexico, s
                 this.selectionStart = this.selectionEnd = start + tabCharacter.length;
             }
         });
-
 
         if (recibirCodigo) {
             codigo.value = recibirCodigo;

@@ -1,6 +1,7 @@
 
 import { ISintaxis } from '../interfaces/sintaxis';
 
+//DEFINE LAS PALABRAS RESERVADAS DEL LENGUAJE
 export const expresionesRegulares: ISintaxis[] = [
   //CODE502
   //BLOQUE(1) DECLARACION Y DEFINICION.

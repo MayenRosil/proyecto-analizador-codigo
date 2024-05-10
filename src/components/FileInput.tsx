@@ -22,6 +22,7 @@ const FileInput: React.FC<FileInputProps> = ({setCodeText}) => {
       const reader = new FileReader();
       reader.onload = () => {
         if (reader.result) {
+          //Si el archivo coincide con la extension, permite abrirlo
           if(file.name.split('.')[1] == 'code'){
             setFileState({
               name: file.name,

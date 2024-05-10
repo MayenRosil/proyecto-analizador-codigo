@@ -37,6 +37,7 @@ const dividirTextoEnPalabras = (texto: string): Palabra[] => {
               }
             }
 
+            //Si una palabra no es valida, se comprueba a que tipo de error lexico pertenece
             if(!esValido) tipoError = validarTipoErrorLexico(palabra);
             if(tipoError === "NO"){
                 if(/^[0-9]+$/.test(palabra)){
@@ -50,7 +51,7 @@ const dividirTextoEnPalabras = (texto: string): Palabra[] => {
                 }
             }
 
-            //Crea el objeto y lo agrega al array final
+            //Crea el objeto y lo agrega al array final de palabras
             palabrasValidadas.push({
                 numeroLinea,
                 palabra,
@@ -65,6 +66,8 @@ const dividirTextoEnPalabras = (texto: string): Palabra[] => {
     return palabrasValidadas;
 };
 
+
+//Valida los distintos tipos de errores lexicos
 const validarTipoErrorLexico = (palabraEscrita: string) => {
 
     let validacion = "NO"
