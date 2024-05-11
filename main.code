@@ -6,7 +6,7 @@ CancionPublica ClaseMusical Main {
         ImprimirLetra ( " Ingrese un número entero : " ) ;
         NotaNum numero = scanner.nextInt ( ) ;
 
-        NotaSi ( numero > 0 ) {
+        NotaSi ( numero > 0889af ) {
             ImprimirLetra ( " El número ingresado es positivo . " ) ;
         } notaAlternativa NotaSi ( numero < 0 ) {
             ImprimirLetra ( " El número ingresado es negativo . " ) ;
