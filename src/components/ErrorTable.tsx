@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { Palabra } from '../interfaces/palabra';
 import '../css/ErrorTable.css'
+import { erroreSintacticos } from '../libs/expresiones';
 
 interface ErrorTableProps {
-    listadoPalabras: Palabra[]
+    listadoPalabras: Palabra[];
+    presionoSintactico: boolean
 }
 
-const ErrorTable: React.FC<ErrorTableProps> = ({ listadoPalabras }) => {
+const ErrorTable: React.FC<ErrorTableProps> = ({ listadoPalabras, presionoSintactico }) => {
     return (
         <div className='table-container'>
         <h2>Tabla de Errores</h2>
@@ -36,6 +38,23 @@ const ErrorTable: React.FC<ErrorTableProps> = ({ listadoPalabras }) => {
                             </tr>
                         )
                     })}
+                    {presionoSintactico &&
+                    erroreSintacticos.filter(x => !x.esValido).map((p, i) => {
+                        return (
+                            <tr key={i}>
+                                <th scope="row">{i}</th>
+                                <td>{p.palabra}</td>
+                                <td>{p.lineas?.map((li, j) => {
+                                    return (
+                                        <span key={j}>{li}, </span>
+                                    )
+                                })}</td>
+                                <td>{p.tipo}</td>
+                                <td>{p.error}</td>
+                            </tr>
+                        )
+                    })
+                    }
                 </tbody>
             </table>
         </div>

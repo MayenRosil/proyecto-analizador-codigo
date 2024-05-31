@@ -5,14 +5,15 @@ import { Palabra } from '../interfaces/palabra';
 
 
 interface TablesRenderProps {
-    listadoPalabras: Palabra[]
+    listadoPalabras: Palabra[];
+    presionoSintactico: boolean
 }
 
-const TablesRender: React.FC <TablesRenderProps> = ({listadoPalabras}) => {
+const TablesRender: React.FC <TablesRenderProps> = ({listadoPalabras,presionoSintactico}) => {
     return (
         <div>
             <TokenTable listadoPalabras={listadoPalabras} />
-            <ErrorTable listadoPalabras={listadoPalabras} />
+            <ErrorTable presionoSintactico={presionoSintactico} listadoPalabras={listadoPalabras} />
         </div>
     )
 }

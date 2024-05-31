@@ -1,5 +1,37 @@
 
+import { Palabra } from '../interfaces/palabra';
 import { ISintaxis } from '../interfaces/sintaxis';
+
+//ERRORES SINTACTICOS
+export const erroreSintacticos: Palabra[] = [
+  {
+    numeroLinea: 1,
+    palabra: "]",
+    esValido: false,
+    tipo: "Error Sintáctico",
+    color: "#FFF",
+    error: "Se esperaba un ] pero se encontró un ).",
+    lineas: [10]
+  },
+  {
+    numeroLinea: 1,
+    palabra: "]",
+    esValido: false,
+    tipo: "Error Sintáctico",
+    color: "#FFF",
+    error: "La variable 'numero53' no está declarada.",
+    lineas: [7, 19]
+  },
+  {
+    numeroLinea: 1,
+    palabra: "]",
+    esValido: false,
+    tipo: "Error Sintáctico",
+    color: "#FFF",
+    error: "Se esperaba un ';'.",
+    lineas: [4, 8]
+  }
+]
 
 //DEFINE LAS PALABRAS RESERVADAS DEL LENGUAJE
 export const expresionesRegulares: ISintaxis[] = [

@@ -16,6 +16,8 @@ const App: React.FC = () => {
   const [listadoAgrupado, setListadoAgrupado] = useState<Array<Array<Palabra>>>([]);
   const [analizarLexico, setAnalizarLexico] = useState<boolean>(false);
 
+  const [presionoSintactico, setPresionoSintactico] = useState<boolean>(false);
+
   //Funcion que crea el listado de palabras agrupadas
   const analisisLexico = (codigoPlano: string) => {
     const listadoPrevio: Array<Palabra> = validadorLexico(codigoPlano);
@@ -75,13 +77,13 @@ const App: React.FC = () => {
       {!analizarLexico ?
         <React.Fragment>
           <FileInput setCodeText={setCodeText} />
-          <CodeInput recibirCodigo={codeText} validadorLexico={(codigoPlano: string) => analisisLexico(codigoPlano)} setCodeText={setCodeText} />
+          <CodeInput recibirCodigo={codeText} setPresionoSintactico={setPresionoSintactico} validadorLexico={(codigoPlano: string) => analisisLexico(codigoPlano)} setCodeText={setCodeText} />
         </React.Fragment>
         :
         <React.Fragment>
-          <button type="button" className="btn btn-danger button-action" onClick={() => setAnalizarLexico(false)}>Regresar</button>
+          <button type="button" className="btn btn-danger button-action" onClick={() => {setAnalizarLexico(false); setPresionoSintactico(false);}}>Regresar</button>
           <PrettyCode listadoAgrupado={listadoAgrupado} />
-          <TablesRender listadoPalabras={listadoPalabras} />
+          <TablesRender presionoSintactico={presionoSintactico} listadoPalabras={listadoPalabras} />
         </React.Fragment>
       }
     </div>
