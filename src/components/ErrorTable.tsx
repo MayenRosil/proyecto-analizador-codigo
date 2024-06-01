@@ -42,7 +42,7 @@ const ErrorTable: React.FC<ErrorTableProps> = ({ listadoPalabras, presionoSintac
                     erroreSintacticos.filter(x => !x.esValido).map((p, i) => {
                         return (
                             <tr key={i}>
-                                <th scope="row">{i}</th>
+                                <th scope="row">{i+1}</th>
                                 <td>{p.palabra}</td>
                                 <td>{p.lineas?.map((li, j) => {
                                     return (
