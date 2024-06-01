@@ -1,14 +1,14 @@
 ImportarRitmo java.util.Scanner
 
-CancionPublica ClaseMusical Main {
+CancionPublica ClaseMusical Main [
     CancionPublica static NotaVacia main ( String [ ] args ) {
         Scanner scanner = nuevoTema Scanner ( System.in ) ;
         ImprimirLetra ( " Ingrese un número entero : " ) ;
         NotaNum numero = scanner.nextInt ( ) ;
 
-        NotaSi ( numero > 0889af ) {
-            ImprimirLetra ( " El número ingresado es positivo . " ) ;
-        } notaAlternativa NotaSi ( numero < 0 ) {
+        NotaSi ( numero53 > 0889af ) {
+            ImprimirLetra ( " El número ingresado es positivo . " ) 
+        } notaAlternativa NotaSi ( numero53 < 0 ) {
             ImprimirLetra ( " El número ingresado es negativo . " ) ;
         } notaAlternativa {
             ImprimirLetra ( " El número ingresado es cero . " ) ;

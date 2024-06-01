@@ -6,12 +6,12 @@ import { ISintaxis } from '../interfaces/sintaxis';
 export const erroreSintacticos: Palabra[] = [
   {
     numeroLinea: 1,
-    palabra: ")",
+    palabra: "[",
     esValido: false,
     tipo: "Error Sintáctico",
     color: "#FFF",
-    error: "Se esperaba un ] pero se encontró un ).",
-    lineas: [10]
+    error: "Se esperaba un { pero se encontró un [.",
+    lineas: [3]
   },
   {
     numeroLinea: 1,
@@ -20,7 +20,7 @@ export const erroreSintacticos: Palabra[] = [
     tipo: "Error Sintáctico",
     color: "#FFF",
     error: "La variable 'numero53' no está declarada.",
-    lineas: [7, 19]
+    lineas: [9, 11]
   },
   {
     numeroLinea: 1,
@@ -29,7 +29,7 @@ export const erroreSintacticos: Palabra[] = [
     tipo: "Error Sintáctico",
     color: "#FFF",
     error: "Se esperaba un ';'.",
-    lineas: [4, 8]
+    lineas: [10]
   }
 ]
 
