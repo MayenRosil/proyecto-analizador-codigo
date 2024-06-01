@@ -29,7 +29,25 @@ export const erroreSintacticos: Palabra[] = [
     tipo: "Error Sintáctico",
     color: "#FFF",
     error: "Se esperaba un ';'.",
-    lineas: [10]
+    lineas: [10, 38]
+  },
+  {
+    numeroLinea: 1,
+    palabra: ";",
+    esValido: false,
+    tipo: "Error Sintáctico",
+    color: "#FFF",
+    error: "Se esperaba un = pero se encontró un *",
+    lineas: [5]
+  },
+  {
+    numeroLinea: 1,
+    palabra: ";",
+    esValido: false,
+    tipo: "Error Sintáctico",
+    color: "#FFF",
+    error: "Se esperaba un valor BOOL pero se encontró un valor STRING",
+    lineas: [21]
   }
 ]
 

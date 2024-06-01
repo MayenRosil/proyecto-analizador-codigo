@@ -2,7 +2,7 @@ ImportarRitmo java.util.Scanner
 
 CancionPublica ClaseMusical Main [
     CancionPublica static NotaVacia main ( String [ ] args ) {
-        Scanner scanner = nuevoTema Scanner ( System.in ) ;
+        Scanner scanner * nuevoTema Scanner ( System.in ) ;
         ImprimirLetra ( " Ingrese un número entero : " ) ;
         NotaNum numero = scanner.nextInt ( ) ;
 
@@ -18,7 +18,7 @@ CancionPublica ClaseMusical Main [
         NotaNum n = scanner.nextInt ( ) ;
 
         NotaNum suma = 0 , factorial = 1 ;
-        NotaBooleana esPrimo = Verdadero ;
+        NotaBooleana esPrimo = "hola" ;
         NotaPor ( NotaNum i = 1 ; i <= n ; i ++ ) {
             suma += i ;
             factorial *= i ;
@@ -35,7 +35,7 @@ CancionPublica ClaseMusical Main [
             ImprimirLetra ( n + " no es un número primo . " ) ;
         }
 
-        scanner.close ( ) ;
+        scanner.close ( ) 
     }
 }
 
