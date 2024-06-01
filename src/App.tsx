@@ -6,6 +6,7 @@ import TablesRender from './components/TablesRender';
 import PrettyCode from './components/PrettyCode';
 import { validadorLexico } from './libs/lexico';
 import { Palabra } from './interfaces/palabra';
+import {procesarCodigo} from './libs/sintactico';
 
 
 
@@ -77,7 +78,12 @@ const App: React.FC = () => {
       {!analizarLexico ?
         <React.Fragment>
           <FileInput setCodeText={setCodeText} />
-          <CodeInput recibirCodigo={codeText} setPresionoSintactico={setPresionoSintactico} validadorLexico={(codigoPlano: string) => analisisLexico(codigoPlano)} setCodeText={setCodeText} />
+          <CodeInput recibirCodigo={codeText} setPresionoSintactico={setPresionoSintactico} validadorLexico={(codigoPlano: string, esSintactico?: boolean) =>{ 
+            if(esSintactico) {
+              console.log(procesarCodigo(listadoAgrupado))
+            }
+            analisisLexico(codigoPlano)
+            }} setCodeText={setCodeText} />
         </React.Fragment>
         :
         <React.Fragment>

@@ -6,7 +6,7 @@ import { ISintaxis } from '../interfaces/sintaxis';
 export const erroreSintacticos: Palabra[] = [
   {
     numeroLinea: 1,
-    palabra: "]",
+    palabra: ")",
     esValido: false,
     tipo: "Error Sintáctico",
     color: "#FFF",
@@ -15,7 +15,7 @@ export const erroreSintacticos: Palabra[] = [
   },
   {
     numeroLinea: 1,
-    palabra: "]",
+    palabra: "numero53",
     esValido: false,
     tipo: "Error Sintáctico",
     color: "#FFF",
@@ -24,7 +24,7 @@ export const erroreSintacticos: Palabra[] = [
   },
   {
     numeroLinea: 1,
-    palabra: "]",
+    palabra: ";",
     esValido: false,
     tipo: "Error Sintáctico",
     color: "#FFF",
@@ -32,6 +32,102 @@ export const erroreSintacticos: Palabra[] = [
     lineas: [4, 8]
   }
 ]
+
+//REGLAS SINTACTICAS
+export const reglasSintacticas: { [key: string]: string[] } = {
+  // Declaración/Definición
+  'NotAbstracta': ['ClaseMusical'],
+  'ClaseMusical': ['IDENTIFICADOR', '{'],
+  'EnumerarNota': ['IDENTIFICADOR', '{'],
+  'ExtenderTempo': ['IDENTIFICADOR'],
+  'FinalCancion': ['ClaseMusical', 'METODO'],
+  'ImplementarRitmo': ['IDENTIFICADOR'],
+  'Interfaz': ['IDENTIFICADOR', '{'],
+  'RitmoNativo': ['METODO'],
+  'EstrictoFP': ['METODO'],
+  'SincronizarTempo': ['METODO'],
+  'Album': ['ClaseMusical'],
+  
+  // Control de Flujo
+  'PausaMusica': [';'],
+  'NotaCaso': ['EXPRESION', ':'],
+  'ContinuarMusica': [';'],
+  'NotaDefecto': [':'],
+  'NotaDo': ['{'],
+  'NotaAlternativa': ['{'],
+  'NotaPor': ['(', 'EXPRESION', ';', 'EXPRESION', ';', 'EXPRESION', ')', '{'],
+  'NotaSi': ['(', 'EXPRESION', ')', '{'],
+  'RegresarNota': ['EXPRESION', ';'],
+  'CambioRitmo': ['(', 'EXPRESION', ')', '{'],
+  'MientrasSuena': ['(', 'EXPRESION', ')', '{'],
+
+  // Modificadores de Acceso
+  'CancionPrivada': ['ClaseMusical', 'METODO'],
+  'CancionProtegida': ['ClaseMusical', 'METODO'],
+  'CancionPublica': ['ClaseMusical', 'METODO'],
+
+  // Clases y Métodos
+  'Introduccion': ['(', 'STRING_ARRAY', ')', '{'],
+  'EsteRitmo': ['.', 'IDENTIFICADOR'],
+  'SuperposicionRitmo': ['(', ')'],
+
+  // Manejo de Excepciones
+  'IntentarSonido': ['{'],
+  'CapturaSonido': ['(', 'EXCEPCION', ')', '{'],
+  'SonidoFinal': ['{'],
+  'LanzarSonido': ['EXCEPCION'],
+  'LanzamientosSonidos': ['EXCEPCION'],
+
+  // Tipos de Datos Primitivos
+  'Coro': ['IDENTIFICADOR'],
+  'NotaBooleana': ['IDENTIFICADOR'],
+  'NotaB': ['IDENTIFICADOR'],
+  'NotaC': ['IDENTIFICADOR'],
+  'NotaDoble': ['IDENTIFICADOR'],
+  'NotaFa': ['IDENTIFICADOR'],
+  'NotaNum': ['IDENTIFICADOR'],
+  'TempoLa': ['IDENTIFICADOR'],
+  'NotaCorta': ['IDENTIFICADOR'],
+  'NotaVacia': ['IDENTIFICADOR'],
+
+  // Otras Palabras Reservadas
+  'AfirmarTema': ['EXPRESION'],
+  'IrTema': ['IDENTIFICADOR'],
+  'NuevoTema': ['ClaseMusical'],
+  'ImportarRitmo': ['IDENTIFICADOR', ';'],
+  'PaqueteRitmo': ['IDENTIFICADOR'],
+
+  // Operadores
+  ';': ['NOTASI', 'MIENTRASSUENA', 'NOTAPOR', 'CAMBIORITMO', 'NOTADEFECTO', 'PAUSAMUSICA', 'CONTINUARMUSICA', 'REGRESARNOTA', 'IDENTIFICADOR', '}'],
+  '{': ['IDENTIFICADOR', 'DECLARACION', '}'],
+  '}': ['{', ';'],
+  '(': ['EXPRESION'],
+  ')': ['{', ';'],
+  ':': ['STATEMENT'],
+  '.': ['IDENTIFICADOR'],
+  '=': ['EXPRESION'],
+  '+': ['EXPRESION'],
+  '-': ['EXPRESION'],
+  '*': ['EXPRESION'],
+  '/': ['EXPRESION'],
+  '==': ['EXPRESION'],
+  '!=': ['EXPRESION'],
+  '<': ['EXPRESION'],
+  '>': ['EXPRESION'],
+  '<=': ['EXPRESION'],
+  '>=': ['EXPRESION'],
+  '&&': ['EXPRESION'],
+  '||': ['EXPRESION'],
+  '!': ['EXPRESION'],
+  '%': ['EXPRESION'],
+  '++': ['IDENTIFICADOR'],
+  '--': ['IDENTIFICADOR'],
+
+  // Otros tokens
+  'STRING_ARRAY': ['IDENTIFICADOR'],
+  'EXCEPCION': ['IDENTIFICADOR']
+};
+
 
 //DEFINE LAS PALABRAS RESERVADAS DEL LENGUAJE
 export const expresionesRegulares: ISintaxis[] = [

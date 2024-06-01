@@ -3,7 +3,7 @@ import '../css/CodeInput.css';
 
 type CodeInputProps = {
     recibirCodigo: string;
-    validadorLexico: (codigoPlano: string) => void;
+    validadorLexico: (codigoPlano: string, esSintactico?: boolean) => void;
     setCodeText: (data: string) => void
     setPresionoSintactico: React.Dispatch<React.SetStateAction<boolean>>
 }
@@ -60,7 +60,7 @@ const CodeInput: React.FC<CodeInputProps> = ({ recibirCodigo, validadorLexico, s
 
                         <div>
                             <button type="button" className="btn btn-info button-action" id="btn" onClick={() => validadorLexico(recibirCodigo)} >Analizador Léxico</button>
-                            <button type="button" className="btn btn-warning button-action" id="btn" onClick={() => {validadorLexico(recibirCodigo); setPresionoSintactico(true);}} >Analizador Sintáctico</button>
+                            <button type="button" className="btn btn-warning button-action" id="btn" onClick={() => {validadorLexico(recibirCodigo, true); setPresionoSintactico(true);}} >Analizador Sintáctico</button>
                         </div>
                     </div>
                     <div className="container">
